@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 300 300">
+  <!-- Generator: Adobe Illustrator 29.1.0, SVG Export Plug-In . SVG Version: 2.1.0 Build 142)  -->
+  <defs>
+    <style>
+      .st0 {
+        fill: none;
+      }
+
+      .st1 {
+        fill: gray;
+      }
+
+      .st2 {
+        clip-path: url(#clippath);
+      }
+    </style>
+    <clipPath id="clippath">
+      <rect class="st0" x="4.31" y="28.59" width="291.38" height="242.81"/>
+    </clipPath>
+  </defs>
+  <g class="st2">
+    <g id="Grupo_6-2">
+      <path id="Trazado_8" class="st1" d="M76.27,44.55l174.4,174.4c7.36,7.36,7.36,19.29,0,26.65l-7.28,7.28c-7.33,7.39-19.26,7.44-26.65.11-.02-.02-.04-.04-.06-.06L42.29,78.53c-7.36-7.36-7.36-19.29,0-26.65.02-.02.04-.04.06-.06l7.34-7.34c7.37-7.3,19.25-7.28,26.59.06"/>
+      <path id="Trazado_30" class="st1" d="M42.28,218.97L216.68,44.57c7.36-7.36,19.29-7.36,26.65,0l7.28,7.28c7.39,7.33,7.44,19.26.11,26.65-.02.02-.04.04-.06.06L76.27,252.95c-7.36,7.36-19.29,7.36-26.65,0-.02-.02-.04-.04-.06-.06l-7.34-7.34c-7.3-7.37-7.28-19.25.06-26.59"/>
+    </g>
+  </g>
+</svg>
