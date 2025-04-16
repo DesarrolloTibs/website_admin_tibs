@@ -24,7 +24,7 @@ export default function Header() {
             <nav
                 className={`fixed top-0 left-0 w-full bg-[#F1F1F3] ${!isOpen ? "border-b-4 nav-border-gradient" : ""} z-10`}>
                 <div
-                    className="container max-w-full h-[44px] lg:h-[133px] p-4 lg:mx-auto flex items-center justify-between px-12 xl:px-28">
+                    className="container max-w-full h-[44px] md:h-[55px] lg:h-[100px] p-4 lg:mx-auto flex items-center justify-between px-12 lg:px-8 xl:px-20 2xl:px-28">
                     <div className="w-full lg:w-auto flex items-center justify-between">
                         <img
                             src="/images/logo-tibs.webp"
@@ -37,9 +37,17 @@ export default function Header() {
                         <img
                             src="/images/logo-tibs.webp"
                             alt="Logo Tibs"
+                            width={108}
+                            height={58}
+                            className="hidden lg:block xl:hidden"
+                        />
+
+                        <img
+                            src="/images/logo-tibs.webp"
+                            alt="Logo Tibs"
                             width={138}
                             height={58}
-                            className="hidden lg:block"
+                            className="hidden xl:block"
                         />
 
                         <button className="lg:hidden ml-auto" onClick={handleToggle}>
@@ -54,10 +62,9 @@ export default function Header() {
                         </button>
                     </div>
 
-                    <ul className="hidden h-[48px] lg:flex items-end space-x-8 text-[#808080] text-[16px] xl:text-[19px] font-medium">
+                    <ul className="hidden h-[48px] lg:flex items-end space-x-7 xl:space-x-10 2xl:space-x-14 text-[#808080] font-medium">
                         {[
                             { name: "Temas de interés", path: "/topics" },
-                            // { name: "Blog", path: "/blog" },
                             { name: "Únete al equipo", path: "/join-us" },
                         ].map((link) => (
                             <li key={link.path}>
@@ -109,20 +116,20 @@ export default function Header() {
                                            onClick={() => setIsOpen(false)}>Únete al equipo</Link>
                                     </div>
 
-                                    <div>
+                                    <a href="tel:52 (81) 1972 . 5300">
                                         <img
                                             src="/icons/icono-telefono.webp"
                                             alt="Icono telefono"
                                             width={40}
                                             height={40}
-                                            className="mt-[44px] img-shadow"
+                                            className="mt-[44px] img-shadow cursor-pointer"
                                         />
-                                    </div>
+                                    </a>
 
-                                    <p className="text-[#00178F] font-bold">Monterrey {" "}
-                                        <span className="text-[#808080] font-bold">+52 81 1972. 5300</span>
-                                    </p>
-                                    <span className="text-[#808080] font-bold">info@tibs.com.mx</span>
+                                    <a href="tel:52 (81) 1972 . 5300" className="text-[#00178F] font-bold text-sm">Monterrey {" "}
+                                        <span className="cursor-pointer text-[#808080] font-bold text-sm">+52 81 1972. 5300</span>
+                                    </a>
+                                    <a href="mailto:info@tibs.com.mx" className="cursor-pointer text-[#808080] font-bold text-sm">info@tibs.com.mx</a>
                                 </motion.div>
                             </>
                         )}

@@ -49,16 +49,16 @@ export default function AdminLogin() {
 
     return (
         <div className="text-center font-lato my-12 md:my-16 xl:my-20">
-            <p className="font-bold text-[#00178F] text-[14px] mb-[14px] md:text-[20px] lg:text-[30px] xl:text-[40px] xl:mt-[100px]">
+            <h2 className="font-bold text-[#00178F] mb-[14px] xl:mt-[100px] text-[14px] md:text-[20px] lg:text-[30px] xl:text-[35px] 2xl:text-[40px]">
                 LOGIN
-            </p>
-            <p className="text-[#808080] text-[14px] mx-[37px] mb-[36px] md:text-[16px] lg:text-[23px] xl:text-[33px] md:mx-[100px] xl:mx-[250px] 2xl:mx-[348] xl:mt-[32px] xl:mb-[100px]">
+            </h2>
+            <h3 className="text-[#808080] mx-[37px] mb-[36px] md:mx-[120px] lg:mx-[180px] xl:mx-[250px] 2xl:mx-[548] xl:mt-[32px] xl:mb-[100px]">
                 Inicia sesión con tus credenciales
-            </p>
+            </h3>
 
             <form
                 onSubmit={handleSubmit}
-                className="flex flex-col gap-[28px] text-[#808080] text-[14px] mx-[55px] md:text-[16px] lg:text-[25px] xl:text-[35px] md:mx-[150px] lg:mx-[200px] xl:mx-[400px] 2xl:mx-[550px] xl:gap-[66px]"
+                className="flex flex-col gap-[28px] text-[#808080] text-[14px] mx-[55px] md:text-[16px] md:gap-[40px] lg:text-[24px] md:mx-[150px] lg:mx-[200px] lg:gap-[50px] xl:mx-[300px] 2xl:mx-[550px] xl:gap-[66px] 2xl:gap-[100px]"
             >
                 <div className="flex flex-col">
                     <label htmlFor="email" className="font-bold">Email</label>
@@ -88,14 +88,14 @@ export default function AdminLogin() {
 
                 {error && <p className="text-red-500 text-sm md:text-md xl:text-xl">{error}</p>}
 
-                <div className="relative mx-auto w-[172px] xl:w-[450px] 2xl:w-[500px] mt-[40px] mb-[38px] xl:mt-[20px]">
+                <div className="relative mx-auto w-[172px] lg:w-[250px] xl:w-[450px] 2xl:w-[450px] mt-[40px] mb-[38px] xl:mt-[20px]">
                     <button
                         type="submit"
-                        className="text-[14px] lg:text-[18px] 2xl:text-[30px] font-bold pl-4 2xl:pl-10 pr-12 2xl:pr-24 rounded-l-[12px] xl:rounded-l-[16px] 2xl:rounded-l-[32px] w-full h-[33px] xl:h-[45px] 2xl:h-[75px] bg-[#F1F1F1] flex items-center justify-between"
+                        className="text-[14px] lg:text-[18px] 2xl:text-[24px] font-bold pl-4 2xl:pl-10 pr-12 2xl:pr-24 rounded-l-[12px] xl:rounded-l-[16px] 2xl:rounded-l-[32px] w-full h-[33px] lg:h-[45px] xl:h-[55px] bg-[#F1F1F1] flex items-center justify-between"
                     >
                         <span className="text-[#808080]">Iniciar sesión</span>
                         <img
-                            className="absolute right-[-10px] focus:ring-transparent 2xl:right-[-60px] top-1/2 transform -translate-y-1/2 w-11 xl:w-[55px] 2xl:w-[90px]"
+                            className="absolute right-[-10px] focus:ring-transparent xl:right-[-15px] 2xl:right-[-40px] top-1/2 transform -translate-y-1/2 w-11 lg:w-[60px] xl:w-[70px]"
                             src={IconSend.src}
                             alt="Botón Iniciar Sesión"
                         />
