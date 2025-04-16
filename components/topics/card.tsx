@@ -1,12 +1,8 @@
 "use client";
 import React, {useState} from "react";
 import {CheckIcon, PencilIcon, PhotoIcon, TrashIcon, XMarkIcon} from "@heroicons/react/24/solid";
-import Image from "next/image";
 
-import FacebookSvg from "@/public/icons/icono-face.svg";
-import XSvg from "@/public/icons/icono-x.svg";
-import LinkedinSvg from "@/public/icons/icono-linkedin.svg";
-import YouSvg from "@/public/icons/icono-you.svg";
+import SocialMedia from "../social-media";
 
 interface CardProps {
     id?: number;
@@ -143,13 +139,13 @@ export default function Card(props: CardProps) {
 
     return (
         <div
-            className="relative flex flex-col rounded-t-[14px] w-[310px] h-[410px] bg-white shadow-[0px_0px_24px_rgba(0,0,0,0.16)] text-[#808080] nav-border-gradient-card
-                        md:rounded-t-[25px] md:w-[350px] md:h-[650px] xl:rounded-t-[24px] xl:w-[462px] xl:h-[840px] xl:mt-8"
+            className="relative flex flex-col rounded-t-[14px] w-[310px] h-[450px] bg-white shadow-[0px_0px_24px_rgba(0,0,0,0.16)] text-[#808080] nav-border-gradient-card
+                        md:rounded-t-[25px] md:w-[420px] md:h-[650px] xl:rounded-t-[24px] xl:w-[550px] xl:h-[840px] xl:mt-8"
         >
             <div className="relative">
                 {selectedImage === "" ? (
                     <PhotoIcon
-                        className="w-full h-[180px] rounded-t-[14px] md:h-[250px] xl:h-[350px] xl:rounded-t-[28px]"
+                        className="w-full h-[180px] rounded-t-[14px] md:h-[250px] xl:h-[300px] xl:rounded-t-[28px]"
                     />
                 ) : (
                     <img
@@ -272,12 +268,7 @@ export default function Card(props: CardProps) {
                 <div className="flex flex-col items-end">
                     <div className="w-full h-[1px] bg-gray-300"></div>
                     <div className='w-full flex flex-row gap-1 justify-center items-center xl:justify-end my-3 xl:my-6'>
-                        <Image className='w-[24px] lg:w-[30px] xl:w-[36px]' src={FacebookSvg}
-                               alt="LogoFacebook"/>
-                        <Image className='w-[24px] lg:w-[30px] xl:w-[36px]' src={XSvg} alt="LogoX"/>
-                        <Image className='w-[24px] lg:w-[30px] xl:w-[36px]' src={LinkedinSvg}
-                               alt="LogoLinkedin"/>
-                        <Image className='w-[24px] lg:w-[30px] xl:w-[36px]' src={YouSvg} alt="LogoYoutube"/>
+                        <SocialMedia widthStyle="w-[24px] lg:w-[30px] xl:w-[36px]"/>
                     </div>
                 </div>
 

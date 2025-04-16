@@ -33,7 +33,7 @@ export default function AdminLogin() {
             const data = await res.json();
             const token = encodeURIComponent(data.body.token);
             setItem('token', token);
-            router.push('/join-us');
+            router.push('/topics');
         } catch (err) {
             const error = err as { message: string };
             setError(error.message);
@@ -42,7 +42,7 @@ export default function AdminLogin() {
 
     useEffect(() => {
         if(tokenKey) {
-            router.push('/join-us');
+            router.push('/topics');
         }
     }, [])
 

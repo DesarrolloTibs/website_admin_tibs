@@ -60,16 +60,16 @@ function Topics() {
                     src="/images/imagen-temas-interes.webp"
                     alt="Imagen Únete al Equipo"
                 />
-                <p className="font-light text-[20px] md:text-[40px] xl:text-[60px] xl:leading-tight">
+                <h1 className="font-light xl:leading-tight">
                     TEMAS DE <span className="font-bold">INTERÉS</span>
-                </p>
+                </h1>
                 <div
-                    className="mx-auto flex items-center nav-border-gradient mt-[15px] w-[176px] xl:mt-[22px] lg:w-[140px] xl:w-[542px]"></div>
-                <p className="mx-[35px] mt-[19px] mb-[22px] text-[12px] font-normal text-center
-                                md:mb-[120px] md:mx-[150px] md:text-[22px] xl:mt-[68px] xl:text-[33px] xl:mb-[105px] xl:mx-[430px] xl:leading-tight">
+                    className="mx-auto flex items-center nav-border-gradient mt-2 2xl:mt-[15px] w-[176px] md:w-[265px] lg:w-[350px] xl:w-[442px] 2xl:w-[542px]"></div>
+                <h2 className="mx-[35px] mt-[19px] mb-[22px] font-normal text-center
+                                md:mb-[120px] md:mx-[150px] xl:mt-[68px] xl:mb-[105px] xl:mx-[260px] 2xl:mx-[430px] xl:leading-tight">
                     Aquí encontraras información relevante sobre algunos temas de interés relacionados con la analítica
                     de datos, su importancia, características y uso dentro de las organizaciones.
-                </p>
+                </h2>
             </section>
 
             {isAuthenticated && (
@@ -100,7 +100,7 @@ function Topics() {
             )}
 
             <section
-                className="flex flex-wrap flex-col w-full items-center mb-[68px] gap-[40px] xl:gap-[60px] 2xl:px-40 xl:mb-[178px] xl:mt-[32px] md:flex-row md:justify-center"
+                className="flex flex-wrap flex-col w-full items-center mb-[68px] gap-[40px] xl:gap-[60px] px-6 2xl:px-14 xl:mb-[178px] xl:mt-[32px] md:flex-row md:justify-center"
             >
                 {showNewCard && (
                     <Card
