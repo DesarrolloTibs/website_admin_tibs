@@ -2,15 +2,18 @@
 import React, {useEffect, useState} from "react";
 import {useRouter} from "next/navigation";
 import IconSend from "@/public/icons/icono-enviar.webp";
-import { useStorage } from "@/hooks/useStorage";
+import {useStorage} from "@/hooks/useStorage";
+import Loader from "@/components/loading";
 
 export default function AdminLogin() {
 
-    const { getItem, setItem } = useStorage();
+    const {getItem, setItem} = useStorage();
     const tokenKey = getItem('token');
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
+    const [checkingAuth, setCheckingAuth] = useState(true);
+    const [loading, setLoading] = useState(false);
     const router = useRouter();
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -18,12 +21,13 @@ export default function AdminLogin() {
         setError("");
 
         try {
+            setLoading(true);
             const res = await fetch(`${process.env.NEXT_API_URL}/auth/login`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ email, password }),
+                body: JSON.stringify({email, password}),
             });
 
             if (!res.ok) {
@@ -32,20 +36,30 @@ export default function AdminLogin() {
 
             const data = await res.json();
             const token = encodeURIComponent(data.body.token);
+
             setItem('token', token);
+            document.cookie = `token=${token}; path=/`;
+
             router.push('/topics');
         } catch (err) {
             const error = err as { message: string };
             setError(error.message);
+        } finally {
+            setLoading(false);
         }
     };
 
     useEffect(() => {
-        if(tokenKey) {
+        if (tokenKey) {
             router.push('/topics');
+        } else {
+            setCheckingAuth(false);
         }
-    }, [])
+    }, [tokenKey]);
 
+    if (checkingAuth || loading) {
+        return <Loader/>
+    }
 
     return (
         <div className="text-center font-lato my-12 md:my-16 xl:my-20">
@@ -88,7 +102,8 @@ export default function AdminLogin() {
 
                 {error && <p className="text-red-500 text-sm md:text-md xl:text-xl">{error}</p>}
 
-                <div className="relative mx-auto w-[172px] lg:w-[250px] xl:w-[450px] 2xl:w-[450px] mt-[40px] mb-[38px] xl:mt-[20px]">
+                <div
+                    className="relative mx-auto w-[172px] lg:w-[250px] xl:w-[450px] 2xl:w-[450px] mt-[40px] mb-[38px] xl:mt-[20px]">
                     <button
                         type="submit"
                         className="text-[14px] lg:text-[18px] 2xl:text-[24px] font-bold pl-4 2xl:pl-10 pr-12 2xl:pr-24 rounded-l-[12px] xl:rounded-l-[16px] 2xl:rounded-l-[32px] w-full h-[33px] lg:h-[45px] xl:h-[55px] bg-[#F1F1F1] flex items-center justify-between"
