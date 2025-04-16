@@ -3,6 +3,8 @@ import React, {useState} from "react";
 import {CheckIcon, PencilIcon, PhotoIcon, TrashIcon, XMarkIcon} from "@heroicons/react/24/solid";
 
 import SocialMedia from "../social-media";
+import {useStorage} from "@/hooks/useStorage";
+import {useRouter} from "next/navigation";
 
 interface CardProps {
     id?: number;
@@ -33,6 +35,8 @@ export default function Card(props: CardProps) {
         onShow
     } = props;
 
+    const {removeItem} = useStorage();
+    const router = useRouter();
     const [isEditing, setIsEditing] = useState<boolean>(isEdit);
     const [editedTitle, setEditedTitle] = useState<string>(title);
     const [editedDescription, setEditedDescription] = useState<string>(description);
@@ -70,6 +74,16 @@ export default function Card(props: CardProps) {
                 },
                 body: formData,
             });
+
+            if (response.status === 401) {
+                alert("Tu sesión ha expirado. Por favor, inicia sesión nuevamente.");
+                if (onSubmitted) onSubmitted(!isSubmitted);
+                if (onShow) onShow(false);
+                removeItem("token");
+                document.cookie = "token=; path=/; max-age=0;";
+                router.push("/");
+                return;
+            }
 
             if (response.ok) {
                 if (onSubmitted) onSubmitted(!isSubmitted);
