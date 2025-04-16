@@ -40,7 +40,7 @@ function JoinUs() {
 
         fetchCards();
     }, [isSubmitted]);
-    
+
     const isAuthenticated = token !== null && token !== "";
 
     const handleLogout = () => {
@@ -54,24 +54,24 @@ function JoinUs() {
 
             <section className="flex flex-col w-full items-center text-[#808080]">
                 <img
-                    className='mt-[32px] mb-[20px] w-[179px] lg:w-[250px] xl:w-[600px] xl:mt-0 xl:mb-0'
+                    className='mt-[32px] mb-[20px] w-[179px] lg:w-[250px] xl:w-[550px] xl:mt-0 xl:mb-0'
                     src="/images/imagen-unete-al-equipo.webp"
                     alt="Imagen Únete al Equipo"
                 />
-                <p className="font-light text-[20px] md:text-[40px] xl:text-[60px] xl:leading-tight">ÚNETE</p>
-                <p className="font-bold text-[20px] md:text-[40px] xl:text-[60px] xl:leading-tight">AL EQUIPO</p>
-                <p className="hidden md:block mx-[348px] mt-[54px] mb-[150px] text-[33px] font-bold text-center md:mb-[120px] md:mx-[150px] md:text-[22px] leading-tight">
+                <h1 className="font-light xl:leading-tight">ÚNETE</h1>
+                <h1 className="font-bold xl:leading-tight">AL EQUIPO</h1>
+                <h2 className="hidden md:block mx-[348px] mt-[54px] mb-[150px] font-bold text-center md:mb-[120px] md:mx-[150px] leading-tight">
                     Estamos buscando personas que puedan sumar esfuerzos a nuestro equipo. <br/>
                     <span className="font-normal">
                         Consulta nuestras vacantes:
                     </span>
-                </p>
-                <p className="mx-[68px] mt-[48px] mb-[18px] text-[12px] font-bold text-center md:hidden">
+                </h2>
+                <h2 className="mx-[68px] mt-[48px] mb-[18px] font-bold text-center md:hidden">
                     Estamos buscando personas que puedan sumar esfuerzos a nuestro equipo.
-                </p>
-                <p className="text-[12px] mb-[52px] md:hidden">
+                </h2>
+                <h2 className="mb-[52px] md:hidden">
                     Consulta nuestras vacantes:
-                </p>
+                </h2>
             </section>
 
             {isAuthenticated && (
