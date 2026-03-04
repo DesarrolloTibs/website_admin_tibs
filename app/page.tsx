@@ -7,6 +7,7 @@ import Loader from "@/components/loading";
 
 export default function AdminLogin() {
 
+    // test jenkins
     const {getItem, setItem} = useStorage();
     const tokenKey = getItem('token');
     const [email, setEmail] = useState("");
