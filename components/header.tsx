@@ -1,13 +1,20 @@
 "use client";
 import {useState} from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import {AnimatePresence, motion} from "framer-motion";
 import Link from "next/link";
+import { useStorage } from "@/hooks/useStorage";
 
 export default function Header() {
+    const { removeItem, getItem } = useStorage();
+
+    const router = useRouter();
+
     const [isOpen, setIsOpen] = useState(false);
     const [isAnimating, setIsAnimating] = useState(true);
     const pathname = usePathname();
+
+    const token = getItem('token');
 
     const handleToggle = () => {
         if (isOpen) {
@@ -18,6 +25,13 @@ export default function Header() {
             setIsAnimating(true);
         }
     };
+
+    const handleLogout = () => {
+        removeItem("token");
+        router.push("/");
+    };
+
+    const isAuthenticated = token !== null && token !== "";
 
     return (
         <header>
@@ -62,30 +76,53 @@ export default function Header() {
                         </button>
                     </div>
 
-                    <ul className="hidden h-[48px] lg:flex items-end space-x-7 xl:space-x-10 2xl:space-x-14 text-[#808080] font-medium">
-                        {[
-                            { name: "Temas de interés", path: "/topics" },
-                            { name: "Únete al equipo", path: "/join-us" },
-                        ].map((link) => (
-                            <li key={link.path}>
-                                <Link
-                                    href={link.path}
-                                    className={`hover:text-[#00178F] relative pb-1 ${
-                                        pathname === link.path ? "font-bold border-b-4 nav-border-gradient-active" : ""
-                                    }`}
+                    {
+                        isAuthenticated && (              
+
+                        <div className="flex items-center">
+                            <ul className="hidden h-[48px] lg:flex items-end space-x-7 xl:space-x-10 2xl:space-x-14 text-[#808080] font-medium">
+                                {[
+                                    { name: "Temas de interés", path: "/topics" },
+                                    { name: "Únete al equipo", path: "/join-us" },
+                                ].map((link) => (
+                                    <li key={link.path}>
+                                        <Link
+                                            href={link.path}
+                                            className={`hover:text-[#00178F] relative pb-1 ${
+                                                pathname === link.path ? "font-bold border-b-4 nav-border-gradient-active" : ""
+                                            }`}
+                                        >
+                                            {link.name}
+                                        </Link>
+                                    </li>
+                                ))}
+                            </ul>
+
+                            <div className="hidden lg:flex h-[48px] items-end ml-4">
+                                <button
+                                    className="flex text-[#808080] font-medium hover:text-[#8f0000] text-lg"
+                                    onClick={handleLogout}
                                 >
-                                    {link.name}
-                                </Link>
-                            </li>
-                        ))}
-                    </ul>
+                                    <span className="pr-1">Logout</span>
+                                    <img
+                                        src="/icons/logout.svg"
+                                        alt="Cerrar sesión"
+                                        width={20}
+                                        height={20}
+                                    />
+                                </button>
+                            </div>
+                        </div>
+                        )
+                    }
+
                 </div>
 
-                {isOpen && (
+                {(isOpen && isAuthenticated) && (
                     <AnimatePresence>
                         {isAnimating && (
                             <>
-                                <div
+                                <button
                                     className="fixed inset-0 bg-black bg-opacity-25 z-20"
                                     onClick={handleToggle}
                                 />
@@ -114,6 +151,20 @@ export default function Header() {
 
                                         <Link href="/join-us" className="hover:text-[#00178F]"
                                            onClick={() => setIsOpen(false)}>Únete al equipo</Link>
+                                        <Link href="/" className="hover:text-[#00178F] flex"
+                                           onClick={() => {
+                                                removeItem("token");
+                                                setIsOpen(false);
+                                            }
+                                           }>
+                                            <span className="text-sm pr-1">Logout</span>
+                                            <img
+                                                src="/icons/logout.svg"
+                                                alt="Cerrar sesión"
+                                                width={14}
+                                                height={14}
+                                            />
+                                        </Link>
                                     </div>
 
                                     <a href="tel:52 (81) 1972 . 5300">

@@ -56,7 +56,7 @@ export default function AdminLogin() {
         } else {
             setCheckingAuth(false);
         }
-    }, [tokenKey]);
+    }, [tokenKey, router]);
 
     if (checkingAuth || loading) {
         return <Loader/>

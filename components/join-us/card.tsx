@@ -155,8 +155,8 @@ export default function Card(props: CardProps) {
 
     return (
         <div
-            className="relative flex flex-col p-6 rounded-[14px] w-[244px] h-[360px] bg-white shadow-[0px_0px_24px_rgba(0,0,0,0.16)] text-[#808080]
-                        md:rounded-[25px] md:w-[400px] md:h-[550px] md:px-9 xl:rounded-[31px] xl:w-[552px] xl:h-[785px] xl:px-12 xl:mt-8"
+            className="relative flex flex-col py-6 pl-6 pr-5 rounded-[14px] w-[244px] h-[360px] bg-white shadow-[0px_0px_24px_rgba(0,0,0,0.16)] text-[#808080]
+                        md:rounded-[25px] md:w-[400px] md:h-[550px] md:pl-9 md:pr-8 xl:rounded-[31px] xl:w-[552px] xl:h-[785px] xl:pl-12 xl:pr-11 xl:mt-8"
         >
             {isAuthenticated && (
                 <div className="absolute top-2 right-2 flex gap-2 md:top-4 md:right-4 md:gap-4">
@@ -224,69 +224,73 @@ export default function Card(props: CardProps) {
                     <span
                         className="text-[11px] text-[#00178F] font-bold md:text-[18px] xl:text-[28px]">{editedTitle}</span>
                 )}
-                <div className="flex flex-col h-[245px] md:h-[400px] xl:h-[550px] overflow-y-auto">
-                    <span className="text-[9px] font-black mt-2 md:text-[15px] xl:text-[20px] xl:mt-4">Perfil:</span>
-                    <div className="text-[9px] font-medium flex flex-col leading-tight md:text-[15px] xl:text-[20px]">
-                        {isEditing ? (
-                            <textarea
-                                className="text-[9px] font-medium w-full border border-gray-300 rounded p-1 md:text-[15px] xl:text-[20px]"
-                                value={editedProfile}
-                                onChange={(e) => setEditedProfile(e.target.value)}
-                                rows={5}
-                            />
-                        ) : (
-                            profileSplit.map((profile: string, index: number) => (
-                                <p key={index}>
-                                    {profile}
-                                </p>
-                            ))
-                        )}
+                <div>
+                    <div className="flex flex-col h-[245px] md:h-[400px] xl:h-[550px] overflow-y-auto">
+                        <span className="text-[9px] font-black mt-2 md:text-[15px] xl:text-[20px] xl:mt-4">Perfil:</span>
+                        <div className="text-[9px] font-medium flex flex-col leading-tight md:text-[15px] xl:text-[20px]">
+                            {isEditing ? (
+                                <textarea
+                                    className="text-[9px] font-medium w-full border border-gray-300 rounded p-1 md:text-[15px] xl:text-[20px]"
+                                    value={editedProfile}
+                                    onChange={(e) => setEditedProfile(e.target.value)}
+                                    rows={5}
+                                />
+                            ) : (
+                                profileSplit.map((profile: string, index: number) => (
+                                    <p className="text-[11px] md:text-[15px] xl:text-[20px]"  key={index}>
+                                        {profile}
+                                    </p>
+                                ))
+                            )}
+                        </div>
+                        <span
+                            className="text-[9px] font-black mt-2 md:text-[15px] xl:text-[20px] xl:mt-4">Herramientas:</span>
+                        <div className="text-[9px] font-medium flex flex-col leading-tight md:text-[15px] xl:text-[20px]">
+                            {isEditing ? (
+                                <textarea
+                                    className="text-[9px] font-medium w-full border border-gray-300 rounded p-1 md:text-[15px] xl:text-[20px]"
+                                    value={editedTools}
+                                    onChange={(e) => setEditedTools(e.target.value)}
+                                    rows={5}
+                                />
+                            ) : (
+                                toolsSplit.map((tool: string, index: number) => (
+                                    <p className="text-[11px] md:text-[15px] xl:text-[20px]"  key={index}>
+                                        - {tool}
+                                    </p>
+                                ))
+                            )}
+                        </div>
+                        <span
+                            className="text-[9px] font-black mt-2 md:text-[15px] xl:text-[20px] xl:mt-4">Características:</span>
+                        <div className="text-[9px] font-medium flex flex-col leading-tight md:text-[15px] xl:text-[20px]">
+                            {isEditing ? (
+                                <textarea
+                                    className="text-[9px] font-medium w-full border border-gray-300 rounded p-1 md:text-[15px] xl:text-[20px]"
+                                    value={editedCharacteristics}
+                                    onChange={(e) => setEditedCharacteristics(e.target.value)}
+                                    rows={5}
+                                />
+                            ) : (
+                                characteristicsSplit.map((char: string, index: number) => (
+                                    <p className="text-[11px] md:text-[15px] xl:text-[20px]" key={index}>
+                                        - {char}
+                                    </p>
+                                ))
+                            )}
+                        </div>
                     </div>
-                    <span
-                        className="text-[9px] font-black mt-2 md:text-[15px] xl:text-[20px] xl:mt-4">Herramientas:</span>
-                    <div className="text-[9px] font-medium flex flex-col leading-tight md:text-[15px] xl:text-[20px]">
-                        {isEditing ? (
-                            <textarea
-                                className="text-[9px] font-medium w-full border border-gray-300 rounded p-1 md:text-[15px] xl:text-[20px]"
-                                value={editedTools}
-                                onChange={(e) => setEditedTools(e.target.value)}
-                                rows={5}
-                            />
-                        ) : (
-                            toolsSplit.map((tool: string, index: number) => (
-                                <p key={index}>
-                                    - {tool}
-                                </p>
-                            ))
-                        )}
-                    </div>
-                    <span
-                        className="text-[9px] font-black mt-2 md:text-[15px] xl:text-[20px] xl:mt-4">Características:</span>
-                    <div className="text-[9px] font-medium flex flex-col leading-tight md:text-[15px] xl:text-[20px]">
-                        {isEditing ? (
-                            <textarea
-                                className="text-[9px] font-medium w-full border border-gray-300 rounded p-1 md:text-[15px] xl:text-[20px]"
-                                value={editedCharacteristics}
-                                onChange={(e) => setEditedCharacteristics(e.target.value)}
-                                rows={5}
-                            />
-                        ) : (
-                            characteristicsSplit.map((char: string, index: number) => (
-                                <p key={index}>
-                                    - {char}
-                                </p>
-                            ))
-                        )}
+                    <div className="lg:mt-2">
+                        <span className="text-[#00178F] text-[10px] font-black md:text-[16px] xl:text-[22px]">
+                            Envia tu CV a: {" "}
+                            <a
+                                className='hover:underline hover:duration-500'
+                                href="mailto:rh@tibs.com.mx">
+                                rh@tibs.com.mx
+                            </a>
+                        </span>
                     </div>
                 </div>
-                <span className="text-[#00178F] text-[10px] font-black mt-2.5 md:text-[16px] xl:text-[22px] xl:mt-6">
-                    Envia tu CV a: {" "}
-                    <a
-                        className='hover:underline hover:duration-500'
-                        href="mailto:rh@tibs.com.mx">
-                        rh@tibs.com.mx
-                    </a>
-                </span>
             </div>
         </div>
     )

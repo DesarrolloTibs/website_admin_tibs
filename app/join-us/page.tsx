@@ -1,9 +1,7 @@
 "use client";
 import Card from "@/components/join-us/card";
-import {useEffect, useState} from "react";
+import {useEffect, useState, Suspense} from "react";
 import Loader from "@/components/loading";
-import { useRouter} from "next/navigation";
-import {Suspense} from "react";
 import { useStorage } from "@/hooks/useStorage";
 
 interface CardData {
@@ -16,20 +14,20 @@ interface CardData {
 }
 
 function JoinUs() {
-    const { getItem, removeItem } = useStorage();
+    const { getItem } = useStorage();
 
     const [cards, setCards] = useState<CardData[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [showNewCard, setShowNewCard] = useState<boolean>(false);
-    const [isSubmitted, setSubmitted] = useState(false);
+    const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
     const token = getItem('token');
-    const router = useRouter();
 
     useEffect(() => {
         const fetchCards = async () => {
             try {
                 const response = await fetch(`${process.env.NEXT_API_URL}/vacancies`);
                 const data = await response.json();
+                console.log(data)
                 setCards(data.vacancies);
             } catch (error) {
                 console.error("Error fetching cards:", error);
@@ -42,11 +40,6 @@ function JoinUs() {
     }, [isSubmitted]);
 
     const isAuthenticated = token !== null && token !== "";
-
-    const handleLogout = () => {
-        removeItem("token");
-        router.push("/");
-    };
 
     return (
         <div>
@@ -85,19 +78,13 @@ function JoinUs() {
                         </button>
                     ) : (
                         <button
-                            className="bg-blue-500 text-white font-bold rounded-xl mb-16 hover:bg-blue-300 px-2 py-3 text-xs w-[120px] md:px-3 md:py-4 md:text-md md:w-[200px] xl:text-xl"
+                            className="bg-blue-500 text-white font-bold rounded-xl mb-16 hover:bg-blue-300 px-2 py-3 text-xs w-auto md:px-3 md:py-4 md:text-md md:w-[200px] xl:text-xl"
                             onClick={() => setShowNewCard(!showNewCard)}
                         >
-                            AGREGAR
+                            AGREGAR VACANTE
                         </button>
                     )}
 
-                    <button
-                        className="bg-red-500 text-white font-bold rounded-xl mb-16 hover:bg-red-300 px-2 py-3 text-xs w-[120px] md:px-3 md:py-4 md:text-md md:w-[200px] xl:text-xl"
-                        onClick={handleLogout}
-                    >
-                        CERRAR SESIÓN
-                    </button>
                 </div>
             )}
 
@@ -113,13 +100,13 @@ function JoinUs() {
                         characteristics=""
                         icon=""
                         isEdit={true}
-                        onSubmitted={setSubmitted}
+                        onSubmitted={setIsSubmitted}
                         isSubmitted={isSubmitted}
                         token={token}
                         onShow={setShowNewCard}
                     />
                 )}
-                {cards && cards.map((card: CardData) => (
+                {cards.map((card: CardData) => (
                     <Card
                         key={card.id}
                         id={card.id}
@@ -129,7 +116,7 @@ function JoinUs() {
                         characteristics={card.characteristics}
                         icon={card.icon}
                         isSubmitted={isSubmitted}
-                        onSubmitted={setSubmitted}
+                        onSubmitted={setIsSubmitted}
                         token={token}
                         onShow={setShowNewCard}
                     />
